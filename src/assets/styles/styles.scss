@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import './variables.scss';
 
 .btn {
   padding: $padding $padding * 2;
@@ -12,7 +12,12 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  border: 1px solid #aeaeae;
+  border: 1px solid $grey;
   padding: $padding * 2;
   border-radius: $radius;
+  color: black;
+}
+
+.v-catalog__link-to-cart:hover {
+  background: #e7e7e7;
 }

@@ -47,6 +47,22 @@
       "article": "T6",
       "available": false,
       "category": "woman"
+    },
+    {
+      "image": "5.jpg",
+      "name": "T-shirt 5",
+      "price": 110,
+      "article": "T7",
+      "available": true,
+      "category": "man"
+    },
+    {
+      "image": "6.jpg",
+      "name": "T-shirt 6",
+      "price": 65,
+      "article": "T8",
+      "available": false,
+      "category": "woman"
     }
   ]
 }

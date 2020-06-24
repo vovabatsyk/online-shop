@@ -1,14 +1,23 @@
 <template>
   <div class="v-catalog">
     <router-link :to="{ name: 'cart', params: { cart_data: CART } }">
-      <div class="v-catalog__link-to-cart">Cart: {{ CART.length }}</div>
+      <div class="v-catalog__link-to-cart">
+        <span class="material-icons" v-if="CART.length">
+          shopping_cart
+        </span>
+        <span class="material-icons" v-else>
+          add_shopping_cart
+        </span>
+      </div>
     </router-link>
     <h1>Catalog</h1>
-    <v-catalog-select
-      :options="options"
-      @select="sortByCategories"
-      :selected="selected"
-    />
+    <div class="filters">
+      <v-catalog-select
+        :options="options"
+        @select="sortByCategories"
+        :selected="selected"
+      />
+    </div>
     <div class="v-catalog__list">
       <v-catalog-item
         v-for="product in filterdrProduct"
@@ -37,6 +46,8 @@ export default {
       ],
       selected: 'all',
       sortedProducts: [],
+      minPrice: 0,
+      maxPrice: 500,
     }
   },
   computed: {
@@ -63,6 +74,14 @@ export default {
         }
       })
     },
+    setRangeSliders() {
+      if (this.minPrice > this.maxPrice) {
+        let tmp = this.maxPrice
+        this.maxPrice = this.minPrice
+        this.minPrice = tmp
+      }
+      this.sortByCategories()
+    },
   },
   mounted() {
     this.GET_PRODUCTS_FROM_API()
@@ -85,6 +104,15 @@ export default {
     border: 1px solid $grey;
     padding: $padding * 2;
     border-radius: $radius;
+  }
+  .filters {
+    box-shadow: 0 0 8px 0 $grey;
+    margin-bottom: $margin * 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: $green;
+    width: 100%;
   }
 }
 </style>
